@@ -34,14 +34,15 @@ export default function Login() {
                         <div className="h-9 w-9 rounded-lg bg-indigo-600 flex items-center justify-center shadow-md shadow-indigo-500/20">
                             <ShieldCheck size={20} className="text-white" />
                         </div>
-                        <span className="font-bold text-lg tracking-wider bg-clip-text text-transparent bg-linear-to-r from-white to-slate-300">
-                            GMC HRMS
-                        </span>
+                        <div className="flex flex-col">
+                            <span className='font-bold text-lg tracking-wider bg-clip-text text-transparent bg-linear-to-r from-white to-slate-300'>Guwahati Municipal Corporation</span>
+                            <span className='text-slate-400'> - Human Resource Management System</span>
+                        </div>
                     </div>
 
                     <div className="my-auto space-y-4">
                         <span className="inline-block px-3 py-1 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold rounded-full uppercase tracking-wider">
-                            Enterprise Portal
+                            Corporation Portal
                         </span>
                         <h2 className="text-4xl font-extrabold tracking-tight text-white leading-tight">
                             Manage your workplace, <br/>

@@ -63,8 +63,8 @@ export default function Sidebar() {
             name: 'Employees',
             icon: Users,
             subItems: [
-                { name: 'Employee Directory', path: '/app/employees/list' },
-                { name: 'Employee Profiles', path: '/app/employees/profile' },
+                { name: 'Employee Directory', path: '/home/employees/data' },
+                { name: 'Employee Profiles', path: '/home/employees/profile' },
             ],
         },
         {
@@ -72,20 +72,20 @@ export default function Sidebar() {
             name: 'Attendance',
             icon: CalendarCheck2,
             subItems: [
-                { name: 'Mark Attendance', path: '/app/attendance/mark' },
-                { name: 'Attendance Statement', path: '/app/attendance/statement' },
-                { name: 'Daily Attendance Report', path: '/app/attendance/daily-report' },
+                { name: 'Mark Attendance', path: '/home/attendance/marking' },
+                { name: 'Attendance Statement', path: '/home/attendance/statement' },
+                { name: 'Daily Attendance Report', path: '/home/attendance/report' },
             ],
         },
         {
             key: 'leaves',
             name: 'Leave Management',
             icon: CalendarOff,
-            badge: '4',
+            // badge: '4',
             subItems: [
-                { name: 'Apply Leave', path: '/app/leaves/apply' },
-                { name: 'Leave Approval Registry', path: '/app/leaves/approvals' },
-                { name: 'Leave Balance Ledger', path: '/app/leaves/ledger' },
+                { name: 'Apply Leave', path: '/home/leave/apply' },
+                { name: 'Leave Approval Registry', path: '/home/leave/approvals' },
+                { name: 'Leave Balance Ledger', path: '/home/leave/records' },
             ],
         },
         {
@@ -93,9 +93,10 @@ export default function Sidebar() {
             name: 'Payroll Processing',
             icon: CircleDollarSign,
             subItems: [
-                { name: 'Monthly Salary Generation', path: '/app/payroll/generate' },
-                { name: 'Salary Slips & Registers', path: '/app/payroll/slips' },
-                { name: 'Bank Export Statements', path: '/app/payroll/bank-statements' },
+                { name: 'Monthly Salary Generation', path: '/home/payroll/generation' },
+                { name: 'Salary Slips & Registers', path: '/home/payroll/payslips' },
+                { name: 'Bank Export Statements / Bill', path: '/home/payroll/statements' },
+                { name: 'Abstract', path: '/home/payroll/abstract' },
             ],
         },
         {
@@ -103,8 +104,8 @@ export default function Sidebar() {
             name: 'Departments',
             icon: Building2,
             subItems: [
-                { name: 'Branch Directory', path: '/app/departments/branches' },
-                { name: 'Section Allocation', path: '/app/departments/sections' },
+                { name: 'Branch Directory', path: '/home/departments/details' },
+                { name: 'Section Allocation', path: '/home/departments/sections' },
             ],
         },
         {
@@ -112,9 +113,9 @@ export default function Sidebar() {
             name: 'Suspension / Disciplinary',
             icon: AlertOctagon,
             subItems: [
-                { name: 'Suspension Registry', path: '/app/suspension/registry' },
-                { name: 'Subsistence Allowance Rule', path: '/app/suspension/allowance' },
-                { name: 'Reinstatement Order', path: '/app/suspension/reinstatement' },
+                { name: 'Suspension Registry', path: '/home/suspension/add' },
+                { name: 'Subsistence Allowance', path: '/home/suspension/allowance' },
+                { name: 'Reinstatement Order', path: '/home/suspension/reinstatement' },
             ],
         },
         {
@@ -122,9 +123,11 @@ export default function Sidebar() {
             name: 'Arrear Master',
             icon: ReceiptIndianRupee,
             subItems: [
-                { name: 'DA Arrear Calculation', path: '/app/arrears/da' },
-                { name: 'Pay Revision Arrears', path: '/app/arrears/pay-revision' },
-                { name: 'Arrear Disbursement Sheet', path: '/app/arrears/disbursement' },
+                { name: 'Add Increment', path: '/home/arrears/add-increment' },
+                { name: 'Pay Revision Arrears', path: '/home/arrears/pay-revision' },
+                { name: 'DA %', path: '/home/arrears/da%' },
+                { name: 'Arrear Statements', path: '/home/arrears/arrear-statements' },
+                { name: 'Leave Bill', path: '/home/arrears/leave-bill' },
             ],
         },
         {
@@ -132,9 +135,9 @@ export default function Sidebar() {
             name: 'EPF Master',
             icon: PiggyBank,
             subItems: [
-                { name: 'EPF Contribution Slab', path: '/app/epf/slabs' },
-                { name: 'Monthly ECR Generation', path: '/app/epf/ecr-generation' },
-                { name: 'Form 3A / 6A Summary', path: '/app/epf/returns' },
+                { name: 'Add EPF', path: '/home/epf/add-epf' },
+                { name: 'EPF Statement', path: '/home/epf/generate-statement' },
+                { name: 'Form 3A / 6A Summary', path: '/home/epf/returns' },
             ],
         },
         {
@@ -142,9 +145,9 @@ export default function Sidebar() {
             name: 'Loans & Advances',
             icon: HandCoins,
             subItems: [
-                { name: 'Loan Sanction Register', path: '/app/loans/sanction' },
-                { name: 'EMI Deduction Ledger', path: '/app/loans/emi-deductions' },
-                { name: 'Festival / House Advance', path: '/app/loans/advances' },
+                { name: 'Loan Sanction Register', path: '/home/loans/sanction' },
+                { name: 'EMI Deduction Ledger', path: '/home/loans/emi-deductions' },
+                { name: 'Festival / House Advance', path: '/home/loans/advances' },
             ],
         },
         {
@@ -152,9 +155,9 @@ export default function Sidebar() {
             name: 'Hierarchy Master',
             icon: Network,
             subItems: [
-                { name: 'Designation Hierarchy', path: '/app/hierarchy/designations' },
-                { name: 'Reporting Authority Mapping', path: '/app/hierarchy/reporting' },
-                { name: 'Organogram View', path: '/app/hierarchy/organogram' },
+                { name: 'Designation Hierarchy', path: '/home/hierarchy/designations' },
+                { name: 'Reporting Authority Mapping', path: '/home/hierarchy/reporting' },
+                { name: 'Organogram View', path: '/home/hierarchy/organogram' },
             ],
         },
         {
@@ -162,9 +165,9 @@ export default function Sidebar() {
             name: 'Pension Master',
             icon: Briefcase,
             subItems: [
-                { name: 'Designation Hierarchy', path: '/app/hierarchy/designations' },
-                { name: 'Reporting Authority Mapping', path: '/app/hierarchy/reporting' },
-                { name: 'Organogram View', path: '/app/hierarchy/organogram' },
+                { name: 'Designation Hierarchy', path: '/home/hierarchy/designations' },
+                { name: 'Reporting Authority Mapping', path: '/home/hierarchy/reporting' },
+                { name: 'Organogram View', path: '/home/hierarchy/organogram' },
             ],
         }
     ];
@@ -174,11 +177,11 @@ export default function Sidebar() {
         name: 'Settings',
         icon: Settings,
         subItems: [
-            { name: 'Manage Holidays', path: '/app/settings/holidays' },
-            { name: 'Leave Rules', path: '/app/settings/leaves' },
-            { name: 'Allowance Config', path: '/app/settings/allowances' },
-            { name: 'Designations', path: '/app/settings/designations' },
-            { name: 'Branches & Zones', path: '/app/settings/branches' },
+            { name: 'Manage Holidays', path: '/home/settings/manage-holidays' },
+            { name: 'Manage Leaves', path: '/home/settings/manage-leaves' },
+            { name: 'Manage Allowances', path: '/home/settings/manage-allowances' },
+            { name: 'Manage Designations', path: '/home/settings/manage-designations' },
+            { name: 'Manage Branches & Zones', path: '/home/settings/manage-branches' },
         ],
     };
 

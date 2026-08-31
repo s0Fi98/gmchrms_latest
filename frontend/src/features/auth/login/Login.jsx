@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Lock, User, ShieldCheck } from 'lucide-react';
 
+import GMC_LOGO from '../../../assets/images/gmc_logo.png';
+
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [userId, setUserId] = useState('');
@@ -65,10 +67,14 @@ export default function Login() {
             <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-12 md:p-20 relative bg-white">
                 
                 {/* PLACEHOLDER FOR YOUR LOGO (Top Right Window Margin) */}
-                <div className="absolute top-8 right-8 h-12 w-32 border-2 border-dashed border-slate-200 rounded-lg flex items-center justify-center bg-slate-50/50 group hover:border-indigo-400 transition-colors">
+                {/* <div className="absolute top-8 right-8 h-12 w-32 border-2 border-dashed border-slate-200 rounded-lg flex items-center justify-center bg-slate-50/50 group hover:border-indigo-400 transition-colors">
                     <span className="text-[10px] font-semibold tracking-wider text-slate-400 uppercase group-hover:text-indigo-600">
                         [ Insert Logo ]
                     </span>
+                </div> */}
+
+                <div className="absolute top-15 right-8 h-8 w-24 flex items-center justify-center bg-slate-50/50 group hover:border-indigo-400 transition-colors">
+                    <img src={GMC_LOGO} alt="GMC Logo" />
                 </div>
 
                 {/* Form Base Wrapper */}

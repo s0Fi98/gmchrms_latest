@@ -73,7 +73,7 @@ export default function Login() {
                     </span>
                 </div> */}
 
-                <div className="absolute top-15 right-8 h-8 w-24 flex items-center justify-center bg-slate-50/50 group hover:border-indigo-400 transition-colors">
+                <div className="absolute top-15 right-8 h-8 w-20 flex items-center justify-center bg-slate-50/50 group hover:border-indigo-400 transition-colors">
                     <img src={GMC_LOGO} alt="GMC Logo" />
                 </div>
 

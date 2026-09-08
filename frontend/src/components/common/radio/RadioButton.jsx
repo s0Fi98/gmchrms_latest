@@ -1,69 +1,114 @@
 import React from "react";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 
-const RadioButton = ({
+export default function RadioButton({
   label,
   name,
-  options,
+  options = [],
   value,
   onChange,
-  status,
+  status, // "success" | "error" | undefined
   message,
-}) => {
+  direction = "col", // "col" | "row"
+  disabled = false,
+  className = "",
+}) {
   const s = status || "default";
 
-  const ringColor = {
+  // Card wrapper states matching Sleek Tech palette
+  const wrapperStyles = {
     default:
-      "border-gray-300 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500",
+      "border-slate-200 hover:border-slate-300 has-[:checked]:border-indigo-600 has-[:checked]:bg-indigo-50/20 has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-indigo-500/10",
     success:
-      "border-gray-300 has-[:checked]:border-green-500 has-[:checked]:ring-1 has-[:checked]:ring-green-500",
-    error: "border-red-300",
+      "border-emerald-200 bg-emerald-50/10 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50/20 has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-emerald-500/10",
+    error:
+      "border-rose-300 bg-rose-50/10 has-[:checked]:border-rose-600 has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-rose-500/10",
   };
 
-  const dotColor = {
-    default: "text-blue-600",
-    success: "text-green-600",
-    error: "text-red-600",
+  // Radio input accents
+  const dotStyles = {
+    default: "text-indigo-600 focus:ring-indigo-500/20 accent-indigo-600",
+    success: "text-emerald-600 focus:ring-emerald-500/20 accent-emerald-600",
+    error: "text-rose-600 focus:ring-rose-500/20 accent-rose-600",
   };
 
   return (
-    <fieldset className="mb-4">
+    <fieldset className={`w-full mb-3 select-none ${className}`}>
       {label && (
-        <legend className="mb-2 text-sm font-medium text-gray-700">
+        <legend className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-700">
           {label}
         </legend>
       )}
 
-      <div className="flex flex-col gap-2">
-        {options.map((opt) => (
-          <label
-            key={opt.value}
-            htmlFor={`${name}-${opt.value}`}
-            className={`flex cursor-pointer items-center gap-3 rounded-md border bg-white px-3 py-2.5 text-sm
-              transition-colors hover:border-gray-400 ${ringColor[s]}`}
-          >
-            <input
-              type="radio"
-              id={`${name}-${opt.value}`}
-              name={name}
-              value={opt.value}
-              checked={value === opt.value}
-              onChange={onChange}
-              className={`h-4 w-4 border-gray-300 focus:ring-0 focus:ring-offset-0 ${dotColor[s]}`}
-            />
-            <span className="text-gray-900">{opt.label}</span>
-          </label>
-        ))}
+      <div
+        className={
+          direction === "row"
+            ? "grid grid-cols-1 sm:grid-flow-col sm:auto-cols-fr gap-2.5"
+            : "flex flex-col gap-2"
+        }
+      >
+        {options.map((opt) => {
+          const isSelected = value === opt.value;
+          const optDisabled = disabled || opt.disabled;
+
+          return (
+            <label
+              key={opt.value}
+              htmlFor={`${name}-${opt.value}`}
+              className={`flex items-start gap-3 rounded-xl border bg-white p-3 cursor-pointer transition-all duration-150 ${
+                optDisabled
+                  ? "opacity-50 cursor-not-allowed bg-slate-50"
+                  : ""
+              } ${wrapperStyles[s]}`}
+            >
+              <input
+                type="radio"
+                id={`${name}-${opt.value}`}
+                name={name}
+                value={opt.value}
+                checked={isSelected}
+                disabled={optDisabled}
+                onChange={onChange}
+                className={`h-4 w-4 mt-0.5 border-slate-300 transition-colors cursor-pointer disabled:cursor-not-allowed ${dotStyles[s]}`}
+              />
+
+              <div className="flex-1 text-xs">
+                <span className="font-semibold text-slate-800 leading-tight block">
+                  {opt.label}
+                </span>
+                {opt.description && (
+                  <p className="text-[11px] text-slate-400 font-medium mt-0.5 leading-normal">
+                    {opt.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Status Icons on selected item */}
+              {isSelected && status === "success" && (
+                <CheckCircle2 size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+              )}
+              {isSelected && status === "error" && (
+                <AlertCircle size={16} className="text-rose-500 shrink-0 mt-0.5" />
+              )}
+            </label>
+          );
+        })}
       </div>
 
+      {/* Validation Message */}
       {message && (
         <p
-          className={`mt-1 text-xs ${status === "error" ? "text-red-600" : "text-gray-500"}`}
+          className={`mt-1.5 px-1 text-[11px] font-medium flex items-center gap-1 ${
+            status === "error"
+              ? "text-rose-600"
+              : status === "success"
+              ? "text-emerald-600"
+              : "text-slate-500"
+          }`}
         >
           {message}
         </p>
       )}
     </fieldset>
   );
-};
-
-export default RadioButton;
+}

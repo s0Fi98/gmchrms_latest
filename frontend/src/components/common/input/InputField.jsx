@@ -1,75 +1,88 @@
 import React from "react";
+import { CheckCircle2, AlertCircle } from "lucide-react";
 
-const InputField = ({
+export default function InputField({
   label,
   id,
   type = "text",
   value,
   onChange,
-  status,
+  status, // "success" | "error" | undefined
   message,
-}) => {
+  required = false,
+  disabled = false,
+  ...props
+}) {
+  const s = status || "default";
+
+  // Aligned with the HRMS Slate + Indigo palette
   const stateStyles = {
-    default: "border-gray-300 focus:border-blue-500 focus:ring-blue-500",
-    success: "border-green-500 focus:border-green-500 focus:ring-green-500",
-    error: "border-red-500 focus:border-red-500 focus:ring-red-500",
+    default:
+      "border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10",
+    success:
+      "border-emerald-300 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 bg-emerald-50/10",
+    error:
+      "border-rose-300 focus:border-rose-500 focus:ring-4 focus:ring-rose-500/10 bg-rose-50/10",
   };
 
   const labelColor = {
-    default: "text-gray-500 peer-focus:text-blue-600",
-    success: "text-green-600",
-    error: "text-red-600",
+    default: "text-slate-400 peer-focus:text-indigo-600",
+    success: "text-emerald-600",
+    error: "text-rose-600",
   };
 
-  const s = status || "default";
-
   return (
-    <div className="mb-4">
+    <div className="w-full mb-3.5">
       <div className="relative">
         <input
           id={id}
           type={type}
           value={value}
           onChange={onChange}
+          disabled={disabled}
           placeholder=" "
-          className={`peer w-full rounded-md border bg-white px-3 pt-4 pb-1.5 text-sm text-gray-900
-            focus:outline-none focus:ring-1 transition-colors ${stateStyles[s]}`}
+          required={required}
+          className={`peer w-full rounded-xl border bg-white px-3.5 pt-4 pb-2 text-xs font-semibold text-slate-800
+            placeholder-transparent transition-all outline-none disabled:bg-slate-50 disabled:cursor-not-allowed
+            ${status ? "pr-10" : "pr-3.5"} ${stateStyles[s]}`}
+          {...props}
         />
+
+        {/* Floating Label */}
         <label
           htmlFor={id}
-          className={`absolute left-3 top-1.5 text-[10px] bg-white px-1 transition-all
-            peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400
-            peer-focus:top-1.5 peer-focus:text-[10px] ${labelColor[s]}`}
+          className={`pointer-events-none absolute left-3 top-1 text-[10px] font-bold tracking-wide uppercase px-1 bg-white transition-all
+            peer-placeholder-shown:top-3 peer-placeholder-shown:text-xs peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-placeholder-shown:text-slate-400
+            peer-focus:top-1 peer-focus:text-[10px] peer-focus:font-bold peer-focus:uppercase ${labelColor[s]}`}
         >
-          {label}
+          {label} {required && <span className="text-rose-500">*</span>}
         </label>
 
-        {status === "success" && (
-          <svg
-            className="absolute right-3 top-3 h-4 w-4 text-green-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        )}
+        {/* Right Status Feedback Icons */}
+        <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
+          {status === "success" && (
+            <CheckCircle2 size={16} className="text-emerald-500" />
+          )}
+          {status === "error" && (
+            <AlertCircle size={16} className="text-rose-500" />
+          )}
+        </div>
       </div>
 
+      {/* Dynamic Feedback Messaging */}
       {message && (
         <p
-          className={`mt-1 text-xs ${status === "error" ? "text-red-600" : "text-gray-500"}`}
+          className={`mt-1.5 px-1 text-[11px] font-medium flex items-center gap-1 ${
+            status === "error"
+              ? "text-rose-600"
+              : status === "success"
+              ? "text-emerald-600"
+              : "text-slate-500"
+          }`}
         >
           {message}
         </p>
       )}
     </div>
   );
-};
-
-export default InputField;
+}
